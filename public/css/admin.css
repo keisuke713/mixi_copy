@@ -1,0 +1,69 @@
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #000;
+}
+
+.list {
+  font-size: xx-large;
+  width: 100%;
+}
+
+.th {
+  padding: 0px 50px;
+}
+
+.headline .caption {
+  position: relative;
+  width: 350px;
+}
+
+.headline .caption .image img {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.headline .caption .name {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+.detail-button {
+  margin-top: 30px;
+  margin-left: 250px;
+}
+
+.timeline-button {
+  margin: 30px 30px 30px 50px;
+}
+
+.event-button {
+  margin: 30px 50px 30px 25px;
+}
+
+.detail {
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+a {
+  margin: 0 auto;
+  display: block;
+  width: 250px;
+}
+
+.community-button {
+  margin: 50px 50px 50px 250px;
+}
+
+.back-button {
+  margin: 50px 0px 50px -250px;
+}
+
