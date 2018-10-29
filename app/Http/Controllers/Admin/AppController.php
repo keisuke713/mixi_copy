@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Community;
 use App\Tweet;
+use App\Comment;
 
 
 
@@ -73,8 +74,7 @@ class AppController extends Controller
 
     public function timeline($id)
     {
-        //community modelからデータを取得する
-        //$community = Community::find($request->id);
+
 
         return view('admin.app.timeline', ['community' => Community::find($id)]);
     }
@@ -104,6 +104,30 @@ class AppController extends Controller
 
     }
 
+    public function comment($id)
+    {
+        return view('admin/app/comment', ['tweet' => Tweet::find($id)]);
+    }
+
+    public function post(Tweet $tweet, Request $request)
+    {
+
+        $this->validate($request, Comment::$rules);
+
+        $comment = new Comment;
+        $comment->tweet_id = $tweet->id;
+        $comment->user_id = Auth::User()->id;
+        $comment->content = $request->content;
+
+        $comment->save();
+
+        return view('admin/app/profile');
+    }
+
+    public function list($id)
+    {
+        return view('admin.app.list', ['tweet' => Tweet::find($id)]);
+    }
     public function event($id)
     {
         //community modelからデータを取得する

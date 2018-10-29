@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('app/timeline/{community}', 'Admin\AppController@timeline');//timeline
     Route::get('app/tweet/{community}', 'Admin\AppController@tweet');//投稿作成
     Route::post('app/tweet/{community}', 'Admin\AppController@contribution');//ツイートする
+    Route::get('app/comment/{tweet}', 'Admin\AppController@comment');//コメント作成ページ
+    Route::post('app/comment/{tweet}', 'Admin\AppController@post');//コメント送信
+    Route::get('app/list/{tweet}', 'Admin\AppController@list');//コメント一覧表示
     Route::get('app/event/{community}', 'Admin\AppController@event');//event
 });
 

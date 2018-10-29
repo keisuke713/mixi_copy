@@ -21,4 +21,9 @@ class Community extends Model
         return $this->hasMany('App\Tweet');
 
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

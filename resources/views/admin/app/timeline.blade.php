@@ -17,7 +17,8 @@
                             <h5>{{ $tweet->user->name }}</h5>
                             <p>{{ $tweet->created_at }}</p>
                             <p>{{ $tweet->content }}</p>
-                            <a href="#" role=button class="btn btn-primary">コメントする</a>
+                            <a href="{{ action('Admin\AppController@comment',['id' => $tweet->id]) }}" role=button class="btn btn-primary">コメントする</a>
+                            <a href="{{ action('Admin\AppController@list', ['id' => $tweet->id]) }}">返信一覧</a>
                         </div>
                     @endforeach
                 @endif
