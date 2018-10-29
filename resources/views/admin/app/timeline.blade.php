@@ -15,7 +15,9 @@
                     @foreach ($community->tweets as $tweet)
                         <div class="list-group-item">
                             <h5>{{ $tweet->user->name }}</h5>
+                            <p>{{ $tweet->created_at }}</p>
                             <p>{{ $tweet->content }}</p>
+                            <a href="#" role=button class="btn btn-primary">コメントする</a>
                         </div>
                     @endforeach
                 @endif
