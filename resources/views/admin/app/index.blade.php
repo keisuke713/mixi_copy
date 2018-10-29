@@ -44,7 +44,7 @@
                                     <th>{{ str_limit($community->detail, 250) }}</th>
                                     <th>
                                         <div>
-                                            <a href="{{ action('Admin\AppController@detail', ['id' => $community->id]) }}">詳しく見てみる</a>
+                                            <a href="{{ action('Admin\AppController@top', ['id' => $community->id]) }}">詳しく見てみる</a>
                                         </div>
                                     </th>
                                 </tr>

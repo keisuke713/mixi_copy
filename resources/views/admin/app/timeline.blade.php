@@ -13,8 +13,10 @@
             <ul class="list-group">
                 @if ($community->tweets != NULL)
                     @foreach ($community->tweets as $tweet)
-                        <li>{{ $tweet->user_id }}</li>
-                        <li>{{ $tweet->content }}</li>
+                        <div class="list-group-item">
+                            <h5>{{ $tweet->user->name }}</h5>
+                            <p>{{ $tweet->content }}</p>
+                        </div>
                     @endforeach
                 @endif
             </ul>

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Community;
 use App\Tweet;
+
+
 
 class AppController extends Controller
 {
@@ -60,37 +63,39 @@ class AppController extends Controller
         return view('admin.app.index', ['posts' => $posts, 'cond_name' => $cond_name]);
     }
 
-    public function detail(Request $request)
+    public function top($id)
     {
         //community modelからデータを取得する
-        $community = Community::find($request->id);
+        //$community = Community::find($request->id);
 
-        return view('admin.app.detail', ['community' => $community]);
+        return view('admin.app.top', ['community' => Community::find($id)]);
     }
 
-    public function timeline(Request $request)
+    public function timeline($id)
     {
         //community modelからデータを取得する
-        $community = Community::find($request->id);
+        //$community = Community::find($request->id);
 
-        return view('admin.app.timeline', ['community' => $community]);
+        return view('admin.app.timeline', ['community' => Community::find($id)]);
     }
 
-    public function tweet(Request $request)
+    public function tweet($id)
     {
-        $community = Community::find($request->id);
+        //$community = Community::find($request->id);
 
-        return view('admin/app/tweet', ['community' => $community]);
+        return view('admin/app/tweet', ['community' => Community::find($id)]);
     }
 
-    public function contribution(Request $request)
+
+
+    public function contribution(Community $community, Request $request)
     {
-        
+
         $this->validate($request, Tweet::$rules);
 
         $tweet = new Tweet;
-        $tweet->community_id = $request->community()->id;
-        $tweet->user_id = $request->user()->id;
+        $tweet->community_id = $community->id;
+        $tweet->user_id = Auth::User()->id; // communityとリレーションしているなら$community->user->id;とかもOK
         $tweet->content = $request->content;
 
         $tweet->save();
@@ -99,11 +104,11 @@ class AppController extends Controller
 
     }
 
-    public function event(Request $request)
+    public function event($id)
     {
         //community modelからデータを取得する
-        $community = Community::find($request->id);
+        //$community = Community::find($request->id);
 
-        return view('admin.app.event', ['community' => $community]);
+        return view('admin.app.event', ['community' => Community::find($id)]);
     }
 }

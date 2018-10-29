@@ -111,7 +111,7 @@
             </div>
             <div class="row">
                 <div class="detail-button">
-                    <a href="{{ action('Admin\AppController@detail', ['id' => $community->id]) }}" role=button class="btn btn-primary">詳細</a>
+                    <a href="{{ action('Admin\AppController@top', ['id' => $community->id]) }}" role=button class="btn btn-primary">概要</a>
                 </div>
                 <div class="timeline-button">
                     <a href="{{ action('Admin\AppController@timeline', ['id' => $community->id]) }}" role=button class="btn btn-primary">タイムライン</a>
