@@ -145,6 +145,10 @@ return [
         'name' => 'コミュニティ名',
         'detail' => '詳細',
         'image' => '画像',
+        'title' => 'タイトル',
+        'date' => '日時',
+        'place' => '場所',
+        'content' => '内容'
     ],
 
 ];

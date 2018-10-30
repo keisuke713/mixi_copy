@@ -26,4 +26,14 @@ class Community extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User::class');
+    }
 }

@@ -10,6 +10,7 @@ use App\User;
 use App\Community;
 use App\Tweet;
 use App\Comment;
+use App\Event;
 
 
 
@@ -135,4 +136,27 @@ class AppController extends Controller
 
         return view('admin.app.event', ['community' => Community::find($id)]);
     }
+
+    public function make($id)
+    {
+        return view('admin.app.make', ['community' => Community::find($id)]);
+    }
+
+    public function submit(Community $community, Request $request)
+    {
+        $this->validate($request, Event::$rules);
+
+        $event = new Event;
+        $event->community_id = $community->id;
+        $event->user_id = Auth::User()->id;
+        $event->title = $request->title;
+        $event->date = $request->date;
+        $event->place = $request->place;
+        $event->detail = $request->detail;
+
+        $event->save();
+
+        return view('admin.app.profile');
+    }
+
 }

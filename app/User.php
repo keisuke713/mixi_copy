@@ -37,4 +37,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
+
+    public funtion communities()
+    {
+        return $this->belongsToMany('App\Models\Community::class');
+    }
 }
