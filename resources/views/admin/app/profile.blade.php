@@ -52,6 +52,8 @@
                         @foreach( Auth::user()->communities as $community )
                             <td><a href="{{ action('Admin\AppController@top', ['id' => $community->id]) }}">{{ $community->name }}</a></td>
                         @endforeach
+                    @else
+                        <p>参加中のコミュニティはありません</p>
                     @endif
             </tr>
         </table>
