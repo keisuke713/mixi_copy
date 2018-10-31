@@ -48,7 +48,11 @@
             </tr>
             <tr>
                 <th class="th">参加コミュニティ</th>
-                <td></td>
+                    @if( Auth::user()->communities != NULL)
+                        @foreach( Auth::user()->communities as $community )
+                            <td><a href="{{ action('Admin\AppController@top', ['id' => $community->id]) }}">{{ $community->name }}</a></td>
+                        @endforeach
+                    @endif
             </tr>
         </table>
     </div>
