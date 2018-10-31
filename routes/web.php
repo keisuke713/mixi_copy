@@ -29,7 +29,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('app/list/{tweet}', 'Admin\AppController@list')->middleware('auth');//コメント一覧表示
     Route::get('app/event/{community}', 'Admin\AppController@event')->middleware('auth');//event
     Route::get('app/make/{community}', 'Admin\AppController@make')->middleware('auth');//event作成ページ
-    Route::post('app/make/{community}', 'Admin\AppController@submit')->middleware('auth');
+    Route::post('app/make/{community}', 'Admin\AppController@submit')->middleware('auth');//event送信
+    Route::get('app/join/{community}', 'Admin\AppController@join')->middleware('auth');//参加する
 });
 
 Auth::routes();

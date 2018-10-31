@@ -159,4 +159,16 @@ class AppController extends Controller
         return view('admin.app.profile');
     }
 
+    public function join($id)
+    {
+        $user = Auth::User();
+        $user->communities()->attach([$id]);
+        $user->save();
+
+        return view('admin.app.top', ['community' => Community::find($id)]);
+    }
+        /*$community_id = $community->$id;
+        $user = Auth::User()->id;
+        $community_id->users()->sync([$user]);*/
+
 }

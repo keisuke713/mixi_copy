@@ -105,6 +105,9 @@
                             <div class="name">
                                 <h1 >{{ str_limit($community->name, 50) }}</h1>
                             </div>
+                            <div class="button">
+                                <a href="{{ action('Admin\AppController@join', ['id' => $community->id]) }}" role=button class="btn btn-primary">参加する</a>
+                            </div>
                         </div>
                     </div>
                 </div>

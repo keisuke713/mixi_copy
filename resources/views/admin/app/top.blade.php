@@ -6,7 +6,9 @@
     <div class="row">
         <div class="col-md-10">
             <div class="detail">
-                {{ str_limit($community->detail) }}
+                <div class="list-group item">
+                    {{ str_limit($community->detail) }}
+                </div>
             </div>
         </div>
     </div>

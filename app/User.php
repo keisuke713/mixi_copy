@@ -43,8 +43,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Event');
     }
 
-    public funtion communities()
+    public function communities()
     {
-        return $this->belongsToMany('App\Models\Community::class');
+        return $this->belongsToMany('App\Community');
     }
 }

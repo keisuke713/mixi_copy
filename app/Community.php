@@ -34,6 +34,6 @@ class Community extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User::class');
+        return $this->belongsToMany('App\User');
     }
 }
