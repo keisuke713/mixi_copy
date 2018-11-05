@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+//use Illuminate\Http\RedirectResponse;
 
 use App\User;
 use App\Community;
@@ -69,6 +70,7 @@ class AppController extends Controller
     {
         //community modelからデータを取得する
         //$community = Community::find($request->id);
+        //$community = CommunityUser->where('user_id', Auth::user()->id)->where('community_id',$request->community_id);
 
         return view('admin.app.top', ['community' => Community::find($id)]);
     }
@@ -82,7 +84,6 @@ class AppController extends Controller
 
     public function tweet($id)
     {
-        //$community = Community::find($request->id);
 
         return view('admin/app/tweet', ['community' => Community::find($id)]);
     }
@@ -101,7 +102,9 @@ class AppController extends Controller
 
         $tweet->save();
 
-        return view('admin/app/profile');
+        return redirect()->action(
+            'Admin\AppController@timeline', [$community]
+        );
 
     }
 
@@ -156,7 +159,9 @@ class AppController extends Controller
 
         $event->save();
 
-        return view('admin.app.profile');
+        return redirect()->action(
+            'Admin\AppController@event', [$community]
+        );
     }
 
     public function join($id)
@@ -167,8 +172,19 @@ class AppController extends Controller
 
         return view('admin.app.top', ['community' => Community::find($id)]);
     }
-        /*$community_id = $community->$id;
-        $user = Auth::User()->id;
-        $community_id->users()->sync([$user]);*/
 
+    public function delete($id)
+    {
+        $user = Auth::User();
+        $user->communities()->detach([$id]);
+        $user->save();
+
+        return view('admin.app.top', ['community' => Community::find($id)]);
+    }
+
+    public function flash($id, Request $request)
+    {
+        $request->session()->flash('message', '参加してください');
+        return back();
+    }
 }

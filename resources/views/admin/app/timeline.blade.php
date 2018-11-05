@@ -5,7 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <a href="{{ action('Admin\AppController@tweet', ['id' => $community->id]) }}">新しくツイートを作成して投稿する</a>
+            @if($community->users->find(Auth::user()->id))
+                <a href="{{ action('Admin\AppController@tweet', ['id' => $community->id]) }}">新しくツイートを作成して投稿する</a>
+            @else
+                <a href="{{ action('Admin\AppController@flash', ['id' => $community->id]) }}">新しくツイートを作成して投稿する</a>
+            @endif
         </div>
     </div>
     <div class="row mt-5">
@@ -21,6 +25,8 @@
                             <a href="{{ action('Admin\AppController@list', ['id' => $tweet->id]) }}">返信一覧</a>
                         </div>
                     @endforeach
+                @else
+                    <p>つぶやきはありません</p>
                 @endif
             </ul>
         </div>

@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('app/make/{community}', 'Admin\AppController@make')->middleware('auth');//event作成ページ
     Route::post('app/make/{community}', 'Admin\AppController@submit')->middleware('auth');//event送信
     Route::get('app/join/{community}', 'Admin\AppController@join')->middleware('auth');//参加する
+    Route::get('app/delete/{community}', 'Admin\AppController@delete')->middleware('auth');//退会する
+    Route::get('app/flash/{community}', 'Admin\AppController@flash')->middleware('auth');//フラッシュ
 });
 
 Auth::routes();

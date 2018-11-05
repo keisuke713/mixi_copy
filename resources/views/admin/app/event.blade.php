@@ -5,7 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <a href="{{ action('Admin\AppController@make', ['id' => $community->id]) }}">イベントを新規作成</a>
+            @if($community->users->find(Auth::user()->id))
+                <a href="{{ action('Admin\AppController@make', ['id' => $community->id]) }}">イベントを新規作成</a>
+            @else
+                <a href="{{ action('Admin\AppController@flash', ['id' => $community->id]) }}">イベントを新規作成</a>
+            @endif
         </div>
     </div>
     <div class="row mt-5">

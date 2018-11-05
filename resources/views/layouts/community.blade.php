@@ -91,6 +91,9 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('message'))
+                {{ Session::get('message') }}
+            @endif
             <div class="row">
                 <div class="headline col-md-10 mx-auto">
                     <div class="row">
@@ -105,9 +108,15 @@
                             <div class="name">
                                 <h1 >{{ str_limit($community->name, 50) }}</h1>
                             </div>
-                            <div class="button">
-                                <a href="{{ action('Admin\AppController@join', ['id' => $community->id]) }}" role=button class="btn btn-primary">参加する</a>
-                            </div>
+                            @if($community->users()->find(Auth::user()->id))
+                                <div class="button">
+                                    <a href="{{ action('Admin\AppController@delete', ['id' => $community->id]) }}" role=button class="btn btn-primary">退会する</a>
+                                </div>
+                            @else
+                                <div class="button">
+                                    <a href="{{ action('Admin\AppController@join', ['id' => $community->id]) }}" role=button class="btn btn-primary">参加する</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
