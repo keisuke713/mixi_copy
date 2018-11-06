@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Community;
@@ -125,7 +125,9 @@ class AppController extends Controller
 
         $comment->save();
 
-        return view('admin/app/profile');
+        return redirect()->action(
+            'Admin\AppController@list', [$tweet]
+        );
     }
 
     public function list($id)

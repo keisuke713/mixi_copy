@@ -15,19 +15,17 @@
     <div class="row mt-5">
         <div class="col-md-8 mx-auto">
             <ul class="list-group">
-                @if ($community->tweets != NULL)
-                    @foreach ($community->tweets as $tweet)
-                        <div class="list-group-item">
-                            <h5>{{ $tweet->user->name }}</h5>
-                            <p>{{ $tweet->created_at }}</p>
-                            <p>{{ $tweet->content }}</p>
-                            <a href="{{ action('Admin\AppController@comment',['id' => $tweet->id]) }}" role=button class="btn btn-primary">コメントする</a>
-                            <a href="{{ action('Admin\AppController@list', ['id' => $tweet->id]) }}">返信一覧</a>
-                        </div>
-                    @endforeach
-                @else
-                    <p>つぶやきはありません</p>
-                @endif
+              @forelse($community->tweets()->orderBy('id', 'desc')->get() as $tweet)
+                  <div class="list-group-item">
+                      <h5>{{ $tweet->user->name }}</h5>
+                      <p>{{ $tweet->created_at }}</p>
+                      <p>{{ $tweet->content }}</p>
+                      <a href="{{ action('Admin\AppController@comment',['id' => $tweet->id]) }}" role=button class="btn btn-primary">コメントする</a>
+                      <a href="{{ action('Admin\AppController@list', ['id' => $tweet->id]) }}">{{ $tweet->comments->count()."件の返信" }}</a>
+                  </div>
+              @empty
+                  <p>つぶやきはありません</p>
+              @endforelse
             </ul>
         </div>
     </div>

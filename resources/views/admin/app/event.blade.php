@@ -15,18 +15,18 @@
     <div class="row mt-5">
         <div class="col-md-8 mx-auto">
             <ul class="list-group">
-                @if ($community->events != NULL)
-                    @foreach($community->events as $event)
-                        <div class="list-group-item">
-                            <h5>{{ $event->user->name }}</h5>
-                            <p>{{ $event->created_at }}</p>
-                            <p>{{ $event->title }}</p>
-                            <p>{{ $event->date }}</p>
-                            <p>{{ $event->place }}</p>
-                            <p>{{ $event->detail }}</p>
-                        </div>
-                    @endforeach
-                @endif
+                @forelse($community->events()->orderBy('id', 'desc')->get() as $event)
+                    <div class="list-group-item">
+                        <h5>{{ $event->user->name }}</h5>
+                        <p>{{ $event->created_at }}</p>
+                        <p>{{ $event->title }}</p>
+                        <p>{{ $event->date }}</p>
+                        <p>{{ $event->place }}</p>
+                        <p>{{ $event->detail }}</p>
+                    </div>
+                @empty
+                    <p>開催予定のイベントはありません</p>
+                @endforelse
             </ul>
         </div>
     </div>
