@@ -8,21 +8,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <form action="{{ action('Admin\AppController@index') }}" method="get">
-                    <div class="form-group row">
-                        <label class="col-md-3">コミュニティ名</label>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
-                        </div>
-                    </div>
-                </form>
+            <div class="col-md-8">
+                <a href="{{ action('Admin\AppController@index') }}" role="button" class="btn btn-primary">コミュニティ一覧</a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a href="{{ action('Admin\AppController@new') }}" role="button" class="btn btn-primary">新規コミュニティ作成</a>
             </div>
         </div>
